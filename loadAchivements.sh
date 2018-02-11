@@ -19,6 +19,9 @@ while read appId; do
   if [ $fileSize -eq 0 ]; then
      logger "Remove $appId.json because it's empty"
      rm "$appId.json"
+  else
+     mkdir --parents "$STEAM_ID"
+     mv $appId.json $STEAM_ID
   fi
 done < myAppIds.txt
 
