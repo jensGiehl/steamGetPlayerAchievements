@@ -21,7 +21,8 @@ while read appId; do
      rm "$appId.json"
   else
      mkdir --parents "$STEAM_ID"
-     mv $appId.json $STEAM_ID
+     fileName=`cat $appId.json| grep "gameName" | sed -e 's/"gameName": "//g;s/",//g;s/^[ \t]*//'`
+     mv $appId.json "$STEAM_ID/$fileName.json"
   fi
 done < myAppIds.txt
 
